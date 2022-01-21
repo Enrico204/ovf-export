@@ -41,6 +41,8 @@ const (
 	ResourceSubTypeBusLogic    = "buslogic"
 	ResourceSubTypeLSILogicSAS = "lsilogicsas"
 	ResourceSubTypeSATA        = "AHCI"
-	ResourceSubTypePCNet32     = "PCNet32"
-	ResourceSubTypeE1000       = "E1000"
+
+	ResourceSubTypePCNet32 = "PCNet32"
+	ResourceSubTypeE1000   = "E1000"
+	ResourceSubTypeVMXNET3 = "VMXNET3"
 )
