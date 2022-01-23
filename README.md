@@ -20,7 +20,7 @@ Requirements:
 ## Installation
 
 ```shell
-$ go install gitlab.com/enrico204/ovf-export/cmd/ovf-export
+$ go install gitlab.com/enrico204/ovf-export/cmd/ovf-export@latest
 ```
 
 If you want to use this tool as library:
