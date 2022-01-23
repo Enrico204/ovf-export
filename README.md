@@ -7,6 +7,10 @@ Player/Workstation/ESXi.
 Also, `ovf` package can be used for serializing custom OVF files.
 De-serializing is not supported at the moment. See "known issues" for details.
 
+**Beta software**: this code works for me, but it may not work in your system.
+At the moment, the code is not tested with different environments. Feel free to
+propose patches.
+
 ## Usage
 
 Requirements:
@@ -70,6 +74,7 @@ import  the OVA/OVF file due to "mismatch hash" for the VMDK (even if the hash
 matches). A workaround is remove the manifest before importing the image.
 * De-serializing a OVF file is not supported, and probably won't be supported 
 soon due a [limit in Go `encoding/xml` handling namespaced XML prefixes](https://github.com/golang/go/issues/9519).
+* Currently, the program should be in the same machine as the `libvirt` daemon.
 
 # LICENSE
 
