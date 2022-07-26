@@ -21,7 +21,7 @@ var l *libvirt.Libvirt
 func main() {
 	var listDomains = flag.Bool("list", false, "List all inactive libvirt-utils domains (a.k.a. VMs)")
 	var domainID = flag.String("id", "", "Domain ID to export")
-	var output = flag.String("output", "", "OVF destination directory")
+	var output = flag.String("output", "", "OVF destination directory (the directory should exists)")
 	var cdrom = flag.Bool("cdrom", false, "Include CDROM/ISO images")
 	var genOVA = flag.Bool("ova", false, "Generate OVA after OVF")
 	var noManifest = flag.Bool("no-manifest", false, "Skip generating manifest")

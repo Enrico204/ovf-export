@@ -20,15 +20,15 @@ func importDisk(file string, outdir string, bus string) (conversionResult, error
 	var ret conversionResult
 
 	if strings.HasSuffix(file, ".iso") {
-		ret.FileName = outdir + path.Base(file)
+		ret.FileName = path.Join(outdir, path.Base(file))
 
 		// I'm quite lazy today, so we copy using cp
-		_, err := exec.Command("cp", file, outdir).Output()
+		_, err := exec.Command("cp", file, outdir+string(os.PathSeparator)).Output()
 		if err != nil {
 			return ret, fmt.Errorf("error copying file: %w", err)
 		}
 	} else {
-		ret.FileName = outdir + path.Base(strings.ReplaceAll(file, ".qcow2", ".vmdk"))
+		ret.FileName = path.Join(outdir, path.Base(strings.ReplaceAll(file, ".qcow2", ".vmdk")))
 
 		var adapterType = qu.AdapterTypeIDE
 		if bus == "sata" || bus == "scsi" {
