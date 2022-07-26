@@ -3,7 +3,7 @@ package main
 
 import (
 	"fmt"
-	v1 "gitlab.com/enrico204/ovf-export/ovf/v1"
+	v1 "gitlab.com/Enrico204/ovf-export/ovf/v1"
 )
 
 func main() {

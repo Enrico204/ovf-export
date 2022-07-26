@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	qu "gitlab.com/enrico204/ovf-export/qemu-utils"
+	qu "gitlab.com/Enrico204/ovf-export/qemu-utils"
 	"os"
 	"os/exec"
 	"path"

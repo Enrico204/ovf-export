@@ -1,4 +1,4 @@
-module gitlab.com/enrico204/ovf-export
+module gitlab.com/Enrico204/ovf-export
 
 go 1.17
 

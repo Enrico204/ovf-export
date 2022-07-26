@@ -3,7 +3,7 @@ package main
 
 import (
 	"fmt"
-	"gitlab.com/enrico204/ovf-export/ovf/manifest"
+	"gitlab.com/Enrico204/ovf-export/ovf/manifest"
 	"os"
 	"regexp"
 )

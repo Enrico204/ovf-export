@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	lu "gitlab.com/enrico204/ovf-export/libvirt-utils"
-	"gitlab.com/enrico204/ovf-export/ovf/rasd"
-	v1 "gitlab.com/enrico204/ovf-export/ovf/v1"
-	"gitlab.com/enrico204/ovf-export/ovf/vssd"
+	lu "gitlab.com/Enrico204/ovf-export/libvirt-utils"
+	"gitlab.com/Enrico204/ovf-export/ovf/rasd"
+	v1 "gitlab.com/Enrico204/ovf-export/ovf/v1"
+	"gitlab.com/Enrico204/ovf-export/ovf/vssd"
 	"io/ioutil"
 	"path"
 	"strconv"
