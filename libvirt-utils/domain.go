@@ -66,10 +66,10 @@ type Disk struct {
 	ReadOnly bool `xml:"readonly"`
 	Address  struct {
 		Type       string `xml:"type,attr"`
-		Controller int    `xml:"controller,attr"`
-		Bus        int    `xml:"bus,attr"`
-		Target     int    `xml:"target,attr"`
-		Unit       int    `xml:"unit,attr"`
+		Controller string `xml:"controller,attr"`
+		Bus        string `xml:"bus,attr"`
+		Target     string `xml:"target,attr"`
+		Unit       string `xml:"unit,attr"`
 	} `xml:"address"`
 }
 
