@@ -75,6 +75,7 @@ matches). A workaround is remove the manifest before importing the image.
 * De-serializing a OVF file is not supported, and probably won't be supported 
 soon due a [limit in Go `encoding/xml` handling namespaced XML prefixes](https://github.com/golang/go/issues/9519).
 * Currently, the program should be in the same machine as the `libvirt` daemon.
+* `virtio` disk bus is not supported. Use SATA or IDE.
 
 # LICENSE
 
