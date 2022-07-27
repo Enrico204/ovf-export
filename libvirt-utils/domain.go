@@ -4,6 +4,9 @@ import "encoding/xml"
 
 const (
 	InterfaceTypeNetwork = "network"
+	InterfaceTypeDirect  = "direct"
+
+	EmulatorQEMUAMD64 = "/usr/bin/qemu-system-x86_64"
 )
 
 type Memory struct {
@@ -74,11 +77,13 @@ type Disk struct {
 }
 
 type ControllerAddress struct {
-	Type     string `xml:"type,attr"`
-	Domain   string `xml:"domain,attr"`
-	Bus      string `xml:"bus,attr"`
-	Slot     string `xml:"slot,attr"`
-	Function string `xml:"function,attr"`
+	Type       string `xml:"type,attr"`
+	Domain     string `xml:"domain,attr"`
+	Controller string `xml:"controller,attr"`
+	Bus        string `xml:"bus,attr"`
+	Port       string `xml:"port,attr"`
+	Slot       string `xml:"slot,attr"`
+	Function   string `xml:"function,attr"`
 }
 
 type Controller struct {
@@ -105,6 +110,56 @@ type Interface struct {
 	Address ControllerAddress `xml:"address"`
 }
 
+type Video struct {
+	Model struct {
+		Type    string `xml:"type,attr"`
+		VRAM    int64  `xml:"vram,attr"`
+		Heads   int    `xml:"heads,attr"`
+		Primary string `xml:"primary,attr"`
+	} `xml:"model"`
+	Address ControllerAddress `xml:"address"`
+}
+
+type Graphics struct {
+	Type     string `xml:"type,attr"`
+	AutoPort string `xml:"autoport,attr"`
+
+	Listen struct {
+		Type string `xml:"type,attr"`
+	} `xml:"listen"`
+}
+
+type Input struct {
+	Type string `xml:"type,attr"`
+	Bus  string `xml:"bus,attr"`
+}
+
+type Channel struct {
+	Type string `xml:"type,attr"`
+
+	Target struct {
+		Type string `xml:"type,attr"`
+		Name string `xml:"vram,attr"`
+	} `xml:"target"`
+	Address ControllerAddress `xml:"address"`
+}
+
+type MemBalloon struct {
+	Model string `xml:"model,attr"`
+
+	Address ControllerAddress `xml:"address"`
+}
+
+type RNG struct {
+	Model string `xml:"model,attr"`
+
+	Backend struct {
+		Model string `xml:"model,attr"`
+		Path  string `xml:",chardata"`
+	} `xml:"backend"`
+	Address ControllerAddress `xml:"address"`
+}
+
 type Domain struct {
 	Type string `xml:"type,attr"`
 
@@ -116,9 +171,16 @@ type Domain struct {
 	VCPUs         VCPU            `xml:"vcpu"`
 	OS            OperatingSystem `xml:"os"`
 	Devices       struct {
+		Emulator    string       `xml:"emulator"`
 		Disks       []Disk       `xml:"disk"`
 		Controllers []Controller `xml:"controller"`
 		Interfaces  []Interface  `xml:"interface"`
+		Videos      []Video      `xml:"video"`
+		/*Graphics    []Graphics   `xml:"graphics"`
+		Inputs      []Input      `xml:"input"`
+		Channels    []Channel    `xml:"channel"`
+		MemBalloon  MemBalloon   `xml:"memballoon"`
+		RNGs        []RNG        `xml:"rng"`*/
 	} `xml:"devices"`
 }
 

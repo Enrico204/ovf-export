@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	lu "gitlab.com/Enrico204/ovf-export/libvirt-utils"
 	"gitlab.com/Enrico204/ovf-export/ovf/rasd"
@@ -130,13 +131,17 @@ func encodeToOvf(vm lu.Domain, cdrom bool, outdir string) error {
 
 				nextInstanceID += 2
 				nextControllerAddress++
+			} else {
+				return errors.New("unsupported target bus: " + disk.Target.Bus)
 			}
+		} else {
+			return errors.New("unsupported disk type: " + disk.Device)
 		}
 	}
 
 	var networks []v1.Network
 	for idx, intf := range vm.Devices.Interfaces {
-		if intf.Type == lu.InterfaceTypeNetwork {
+		if intf.Type == lu.InterfaceTypeNetwork || intf.Type == lu.InterfaceTypeDirect {
 			var nic = "net" + strconv.Itoa(idx)
 			networks = append(networks, v1.Network{
 				Name:        nic,
@@ -158,6 +163,8 @@ func encodeToOvf(vm lu.Domain, cdrom bool, outdir string) error {
 			})
 
 			nextInstanceID++
+		} else {
+			return errors.New("unsupported network type: " + intf.Type)
 		}
 	}
 
